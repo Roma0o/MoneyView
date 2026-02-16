@@ -22,6 +22,12 @@ public class UsuarioController {
         return usuarioService.criar(usuario);
     }
     
+    @PostMapping("/login")
+    public Usuario login(@RequestBody Usuario usuario) {
+        return usuarioService.login(usuario.getEmail(), usuario.getSenha());
+    }
+
+    
     //Listar tudo
     @GetMapping
     public List<Usuario> listar() {

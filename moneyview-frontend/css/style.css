@@ -1,0 +1,88 @@
+:root {
+    --cor-primaria: #6f42c1;
+    --cor-ganho: #198754;
+    --cor-despesa: #dc3545;
+    --cor-fundo: #ffffff;
+    --cor-texto: #000000;
+    --cor-card: #ffffff;
+    --cor-card-texto: #000000;
+    --cor-card-border: #dee2e6;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    transition: 0.3s;
+}
+
+/* Cards em Dark Mode */
+.card {
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+    border-color: var(--cor-card-border);
+    transition: 0.3s;
+}
+
+.card-body {
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+}
+
+.card-title,
+.card-text {
+    color: var(--cor-card-texto);
+}
+
+.form-control,
+.form-select {
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+    border-color: var(--cor-card-border);
+    transition: 0.3s;
+}
+
+.form-control::placeholder {
+    color: var(--cor-card-texto);
+    opacity: 0.6;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 0.2rem rgba(111, 66, 193, 0.25);
+}
+
+.form-label {
+    color: var(--cor-card-texto);
+}
+
+.list-group-item {
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+    border-color: var(--cor-card-border);
+}
+
+.text-muted {
+    color: var(--cor-card-texto) !important;
+    opacity: 0.7;
+}
+
+.resumo-card.ganho {
+    border-left: 5px solid var(--cor-ganho);
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+}
+
+.resumo-card.despesa {
+    border-left: 5px solid var(--cor-despesa);
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+}
+
+.resumo-card.saldo {
+    border-left: 5px solid var(--cor-primaria);
+    background-color: var(--cor-card);
+    color: var(--cor-card-texto);
+}

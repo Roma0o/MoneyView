@@ -17,7 +17,14 @@ public class UsuarioService {
     public Usuario criar(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
+    
+    public Usuario login(String email, String senha) {
 
+        return usuarioRepository
+                .findByEmailAndSenha(email, senha).orElseThrow(() -> new RuntimeException("Email ou senha inválidos"));
+    }
+
+    
     public List<Usuario> listarTodos() {
         return usuarioRepository.findAll();
     }

@@ -1,4 +1,4 @@
-const API = "http://localhost:8080/usuarios";
+const API = "http://localhost:8080/usuarios/login";
 
 document.getElementById("formLogin")
 .addEventListener("submit", async (e) => {
@@ -7,16 +7,26 @@ document.getElementById("formLogin")
     const email = document.getElementById("email").value;
     const senha = document.getElementById("senha").value;
 
-    const response = await fetch(API);
-    const usuarios = await response.json();
+    const response = await fetch(API, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email,
+            senha: senha
+        })
+    });
 
-    const usuario = usuarios.find(u => u.email === email && u.senha === senha);
-
-    if (!usuario) {
+    if (!response.ok) {
         alert("Email ou senha inválidos");
         return;
     }
 
+    const usuario = await response.json();
+
     localStorage.setItem("usuarioId", usuario.id);
+    localStorage.setItem("usuarioNome", usuario.nome);
+
     window.location.href = "dashboard.html";
 });

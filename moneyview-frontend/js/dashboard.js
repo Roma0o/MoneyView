@@ -43,7 +43,7 @@ document.getElementById("formTransacao")
     } else {
 
         // ➕ CREATE
-        await fetch(API_TRANSACOES, {
+        await fetch(`${API_TRANSACOES}/${usuarioId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -133,19 +133,30 @@ async function carregarTransacoes() {
             const valor = parseFloat(t.valor);
 
             const li = document.createElement("li");
+            li.className = "list-group-item d-flex justify-content-between align-items-center";
 
             li.innerHTML = `
-                ${t.descricao} - ${formatarMoeda(valor)} (${t.tipo}) - ${t.data}
                 <div>
-                    <button onclick='editarTransacao(${JSON.stringify(t)})'>Editar</button>
-                    <button onclick="deletarTransacao(${t.id})">Excluir</button>
+                    <strong>${t.descricao}</strong><br>
+                    <small>${t.data}</small>
+                </div>
+
+                <div>
+                    <span class="me-3 ${t.tipo === "GANHO" ? "text-success" : "text-danger"}">
+                        ${formatarMoeda(valor)}
+                    </span>
+
+                    <button class="btn btn-sm btn-warning me-2"
+                        onclick='editarTransacao(${JSON.stringify(t)})'>
+                        Editar
+                    </button>
+
+                    <button class="btn btn-sm btn-danger"
+                        onclick="deletarTransacao(${t.id})">
+                        Excluir
+                    </button>
                 </div>
             `;
-
-            li.style.color = t.tipo === "GANHO" ? "green" : "red";
-            li.style.display = "flex";
-            li.style.justifyContent = "space-between";
-            li.style.alignItems = "center";
 
             lista.appendChild(li);
         });
@@ -170,4 +181,7 @@ function logout() {
     window.location.href = "login.html";
 }
 
-carregarTransacoes();
+// Carrega transações após DOM estar pronto
+document.addEventListener("DOMContentLoaded", function() {
+    carregarTransacoes();
+});

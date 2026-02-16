@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transacoes")
+@CrossOrigin(origins = "*")
 public class TransacaoController {
     
     private final TransacaoService transacaoService;
