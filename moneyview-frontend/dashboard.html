@@ -1,0 +1,45 @@
+<head>
+    <title>Dashboard - MoneyView</title>
+</head>
+<body>  
+    <h1>Minhas Transações</h1>
+
+    <button onclick="logout()">Sair</button>
+
+    <h3>Resumo</h3>
+    <p>Ganhos: <span id="totalGanhos">R$ 0,00</span></p>
+    <p>Despesas: <span id="totalDespesas">R$ 0,00</span></p>
+    <p><strong>Saldo: <span id="saldo">R$ 0,00</span></strong></p>
+
+
+    <h3>Nova Transação</h3>
+    <form id="formTransacao">
+        <input type="text" id="descricao" placeholder="Descrição" required>
+        <input type="number" id="valor" placeholder="Valor" step="0.01" min= "0.01" required>
+        <select id="tipo" required>
+            <option value="GANHO">Ganho</option>
+            <option value="DESPESA">Despesa</option>
+        </select>
+        <input type="date" id="data" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h3>Filtros</h3>
+
+    <input type="date" id="dataInicio">
+    <input type="date" id="dataFim">
+
+    <select id="filtroTipo">
+        <option value="TODOS">Todos</option>
+        <option value="GANHO">Ganhos</option>
+        <option value="DESPESA">Despesas</option>
+    </select>
+
+    <button onclick="carregarTransacoes()">Aplicar Filtro</button>
+
+
+    <h3>Lista</h3>
+    <ul id="listaTransacoes"></ul>
+
+    <script src="js/dashboard.js"></script>
+</body>
